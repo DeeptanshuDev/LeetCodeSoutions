@@ -1,0 +1,28 @@
+Number of 10, 50, 20, 1 notes required to create Total Amount
+1330 = >13 100's note
+        1 20's note
+        10 1's note
+
+#include<iostream>
+using namespace std;
+
+int main(){
+	int n;
+	cin>>n;
+	int note100 = n /100;
+	n = n % 100;
+	
+	int note50 = n / 50;
+	n = n % 50;
+	
+	int note20 = n /20;
+	n = n% 20;
+	
+	int note1 = n /1;
+	n = n%1;
+	
+	cout<<"You require "<< note100<<" 100s note"<<endl;
+	cout<<"You require "<< note50<<" 50s note"<<endl;
+	cout<<"You require "<< note20<<" 20s note"<<endl;
+	cout<<"You require "<< note1<<" 1s note"<<endl;
+}
