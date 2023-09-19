@@ -1,0 +1,24 @@
+nCr = n!/r!(n-r)!
+
+
+#include<iostream>
+using namespace std;
+
+int factorial(int n){
+	int fact = 1;
+	for(int i = 1; i <= n; i++)
+	{
+		fact = fact*i;
+		cout<<"the multiplucation of "<<i<<" is "<<fact<<endl;
+	}
+	return fact;
+}
+
+int main(){
+	int a,b;
+	cin>>a>>b;
+	int answer = 0;
+	answer = (factorial(a)) / ((factorial(b)) * (factorial(a-b)));
+	cout<<"Answwer is "<<answer<<endl;
+	
+}
