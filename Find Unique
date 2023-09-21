@@ -1,0 +1,30 @@
+Find nonrepeating element in array where every element repeats twice except one
+
+#include<iostream>
+using namespace std;
+
+int nonrepeating(int arr[], int size){
+	for (int i = 0; i < size; i++) {
+        bool isDuplicate = false;
+        for (int j = 0; j < size; j++) {
+        	cout<<"i : " <<i<<" j: "<<j<<endl;
+            if (i != j && arr[i] == arr[j]) {
+                isDuplicate = true;
+                break;
+            }
+        }
+        if (!isDuplicate) {
+            return arr[i];
+        }
+    }
+    // If no non-repeating element is found, you can return a sentinel value or handle it as needed.
+    return -1;
+}
+
+int main(){
+	int arr[5] = {1,1,2,2,3};
+	
+	int n = nonrepeating(arr, 5);
+	cout<<n<<endl;
+	
+}
