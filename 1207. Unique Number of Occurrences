@@ -1,0 +1,78 @@
+1207. Unique Number of Occurrences
+
+Brute Force Approach
+#include<iostream>
+#include <set>
+#include <map>
+using namespace std;
+
+bool checkForUnique(map<int, int> mapOfArray){
+	set<int> setOfArr;
+	for(const auto&pair: mapOfArray){
+		int value = pair.second;
+		if(setOfArr.find(value) != setOfArr.end()){
+			return false;
+		} 
+		setOfArr.insert(value);
+	}
+	return true;
+}
+
+bool getResult(int arr[], int size){
+	set<int> setOfEle;
+	for(int i = 0; i < size; i++){
+		setOfEle.insert(arr[i]);
+	}
+	
+	map<int, int> mapOfEle;
+	for(int i : setOfEle){
+		mapOfEle.insert({i, 0});
+	}
+	
+	cout<<"The Checking has started"<<endl;
+	for(int i = 0; i < size; i++){
+		int count = 1;
+		for(int j = 0; j < size; j++){
+			//cout<<"The value of arr[i]  is : "<<arr[i]<<" and the value of arr[j] is "<<arr[j]<<endl;
+			if(  (i!=j) && (arr[i] == arr[j])){
+				count++;
+			}
+		}
+		//cout<<"count for arr[i]: "<<arr[i]<<" is "<<count<<endl;
+		for(const auto&pair : mapOfEle){
+			if(mapOfEle.find(arr[i]) != mapOfEle.end()){
+				mapOfEle[arr[i]] = count;
+			}
+		}
+	}
+	
+	
+	for(const auto&pair : mapOfEle){
+		cout<<"the value in map is"<<pair.first<<" is having value "<<pair.second<<endl;
+	}
+	
+	
+	if(checkForUnique(mapOfEle)){
+		return true;
+	} else{
+		return false;
+	}
+	
+	
+	/*/
+	for(const auto&pair : mapOfEle){
+		cout<<"the value in map is"<<pair.first<<" is having value "<<pair.second<<endl;
+	}
+	return true;
+	*/
+}
+
+int main(){
+	int arr[7] = {1,2,2,1,1,3,3};
+	bool result = getResult(arr, 7);
+	cout<<result<<endl;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Optimal Solution
