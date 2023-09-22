@@ -1,0 +1,52 @@
+Array Intersection
+
+#include <iostream>
+#include<vector>
+#include <climits>
+using namespace std;
+
+void displayVector(vector<int>& vec){
+	for (int i = 0; i < vec.size(); i++)
+	{
+		cout << vec[i] << " ";
+	}
+	cout << endl;
+}
+
+vector<int> getIntersection(int arr[], int arr2[], int size1, int size2){
+	int i = 0;
+	vector<int> intersected;
+	while(i < size1){
+		for(int j = 0; j < size2; j++){
+			if(arr[i] == arr2[j]){
+				arr2[j] = INT_MIN;
+				intersected.push_back(arr[i]);
+				break;
+			}
+		}
+		i++;
+	}
+	return intersected;
+}
+
+int main() {
+	int arr[6] = {1,2,2,2,3,4};
+	int arr2[4] = {2,2,3,3};
+
+	vector<int> getResults = getIntersection(arr, arr2, 6, 4);
+	displayVector(getResults);
+
+
+	cout<<endl;
+
+	int arr3[3] = {1,2,3};
+	int arr4[2] = {3,4};
+
+	vector<int> getResults2 = getIntersection(arr3, arr4, 3, 2);
+	displayVector(getResults2);
+	return 0;
+}
+
+
+----------------------------------///////////////////////////////////////////////////////////////////////////---------------------------------------------------
+Optimal Solution
