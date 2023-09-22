@@ -1,0 +1,40 @@
+Sort 0 1
+
+#include<iostream>
+#include<vector>
+using namespace std;
+
+void display(int arr[], int size){
+	for(int i = 0; i < size; i++){
+		cout<<arr[i]<<" ";
+	}
+	cout<<endl;
+}
+
+void sort01(int arr[], int size){
+
+	vector<int> vec;
+	int left = 0, right = size-1;
+
+	while(left < right){
+	    cout<<"arr[left] is "<<arr[left]<<" and arr[right] is "<<arr[right]<<endl;
+		while(arr[left] == 0 && left < right){
+			left++;
+		} 
+		while(arr[right] == 1 && left < right) {
+			right--;
+		} 
+		swap(arr[left], arr[right]);
+		left++;
+		right--;
+	}
+}
+
+int main(){
+
+	int arr[5] = {0,1,0,1,0};
+	int size = sizeof(arr)/sizeof(arr[0]);
+	sort01(arr, size);
+	display(arr,5);
+}
+
