@@ -1,0 +1,88 @@
+442. Find All Duplicates in an Array
+
+Brute Force(O(n*n))
+#include <iostream>
+#include<vector>
+#include<set>
+using namespace std;
+
+void displayVector(vector<int>& vec){
+	for (int i = 0; i < vec.size(); i++)
+	{
+		cout << vec[i] << " ";
+	}
+	cout << endl;
+}
+
+vector<int> findAllDuplicates(int arr[], int size){
+	set<int> setOfVal;
+	int i = 0;
+	cout<<"reached here";
+
+	while( i < size){
+		for(int j = 0; j < size; j++){
+			if( i != j){
+				if(arr[i] == arr[j]){
+				    setOfVal.insert(arr[i]);
+				}
+			}
+		}
+		i = i+1;
+	}
+	vector<int> vec(setOfVal.begin(), setOfVal.end());
+	displayVector(vec);
+	return vec;
+}
+
+int main() {
+	int arr[8] = {4,3,2,7,8,2,3,1};
+	int size = sizeof(arr) / sizeof(arr[0]);
+	cout<<"array size is"<<size<<endl;
+
+	vector<int> displayValue = findAllDuplicates(arr, size);
+	displayVector(displayValue);
+
+}
+
+
+----------------------//////////////////////////////////////////////////////////////////////////-----------------------------------------
+Optimal Solution O(nlogn)
+#include <iostream>
+#include<vector>
+#include<set>
+#include<algorithm>
+using namespace std;
+
+void displayVector(vector<int>& vec){
+	for (int i = 0; i < vec.size(); i++)
+	{
+		cout << vec[i] << " ";
+	}
+	cout << endl;
+}
+
+vector<int> findAllDuplicates(vector<int>& vec){
+    sort(vec.begin(), vec.end());
+    displayVector(vec);
+    cout<<"after sort"<<endl;
+
+    vector<int> returnValues;
+    set<int> setOfValues;
+    for(int i = 0; i < vec.size(); i++){
+    	cout<<"Values of arr[i] "<<vec[i]<<" and arr[i+1] "<<vec[i+1]<<endl;
+        if(vec[i] == vec[i+1]){
+        	cout<<"inside codition"<<endl;
+            returnValues.push_back(vec[i]);
+        }
+    }
+    displayVector(returnValues);
+	return returnValues;
+}
+
+int main() {
+	vector<int> arr = {4,3,2,7,8,2,3,1};
+
+	vector<int> displayValue = findAllDuplicates(arr);
+	displayVector(displayValue);
+
+}
