@@ -23,3 +23,31 @@ int main(){
 	int dup = findDuplicate(arr, size);
 	cout<<dup;
 }
+\
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Optimal Solution 
+#include<iostream>
+using namespace std;
+
+int findDuplicate(int arr[], int size){
+	int ans = 0;
+	//Getting all the elemensts using XOR with Array, 0 ^ arr[i] == arr[i]
+	for(int i = 0; i < size; i++){
+		ans = ans ^ arr[i];
+	}
+	
+	//After getting all elements all array, then we XOR it with 1 to N-1	
+	for(int i = 1; i < size; i++){
+		ans = ans ^ i;
+	}
+	return ans;
+} 
+
+int main(){
+	int arr[5] = {1,2,3,4,4};
+	int size = sizeof(arr) / sizeof(arr[0]);
+	
+	int dup = findDuplicate(arr, size);
+	cout<<dup;
+}
