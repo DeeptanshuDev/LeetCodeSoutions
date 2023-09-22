@@ -1,0 +1,25 @@
+Find Duplicate
+
+#include<iostream>
+using namespace std;
+
+int findDuplicate(int arr[], int size){
+	int i = 0;
+	while(i < size){
+		for(int j = 0; j < size; j++){
+			if((i != j) && (arr[i] == arr[j])){
+				return arr[i];
+			}
+		}
+		i++;
+	}
+	return -1;
+}
+
+int main(){
+	int arr[5] = {1,2,3,4,4};
+	int size = sizeof(arr) / sizeof(arr[0]);
+	
+	int dup = findDuplicate(arr, size);
+	cout<<dup;
+}
