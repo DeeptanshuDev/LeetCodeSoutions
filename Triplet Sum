@@ -1,0 +1,65 @@
+Triplet Sum
+
+#include <iostream>
+#include <cmath> // Include the <cmath> header for abs with floating-point numbers
+#include <vector>
+#include<set>
+#include<algorithm>
+using namespace std;
+
+void printMatrix(const vector<vector<int>>& matrix) {
+    // Iterate through the outer vector
+    for (int i = 0; i < matrix.size(); i++) {
+        // Iterate through the inner vector
+        for (int j = 0; j < matrix[i].size(); j++) {
+            cout << matrix[i][j] << " ";
+        }
+        cout << endl; // Start a new line for each inner vector
+    }
+}
+
+vector<vector<int>> findtriplet(int arr[], int size, int f){
+    vector<vector<int>> triplet;
+    set<vector<int>> setOfvec;
+    for(int i = 0; i < size; i++){
+        for(int j = i+1; j < size; j++){
+            for(int k = j+1; k < size; k++){
+                if(i != j){
+                    if(j != k){
+                        int sum = arr[i] + arr[j] + arr[k];
+                        if(sum == f){
+                            vector<int> vec;
+                            vec.push_back(arr[i]);
+                            vec.push_back(arr[j]);
+                            vec.push_back(arr[k]);
+                            sort(vec.begin(), vec.end());
+                            setOfvec.insert(vec);
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+    for(const vector<int>& v : setOfvec){
+        triplet.push_back(v);
+    }
+    if(triplet.size() > 0){
+        
+    } else{
+        vector<int> vec2;
+        vec2.push_back(-1);
+        triplet.push_back(vec2);
+        
+    }
+    return triplet;
+}
+
+int main() {
+    int arr[6] = {1,1,2,2,1,1};
+    
+    vector<vector<int>> result = findtriplet(arr, 6 , 4);
+    printMatrix(result);
+    
+    
+}
